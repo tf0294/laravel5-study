@@ -157,6 +157,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Providers\AdminServiceProvider::class,
     ],
 
     /*
@@ -205,6 +206,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 
+        'AdminFacade' => Facade\AdminFacade::class,
     ],
 
 ];

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ *
+ */
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
@@ -8,11 +10,12 @@ use App\Http\Requests;
 use App\Http\Requests\Admin\ImageComplateRequest;
 use App\Http\Requests\Admin\ImageEditComplateRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminController;
 use App\Image;
 use Component\AdminInterface;
 use Carbon\Carbon;
 
-class ImageController extends Controller implements AdminInterface
+class ImageController extends AdminController implements AdminInterface
 {
     use AdminTrait;
     protected static $model = 'Image';

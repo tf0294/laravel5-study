@@ -1,17 +1,20 @@
 <?php
-
+/**
+ *
+ */
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Component\AdminTrait;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Requests\Admin\UserRegistRequest;
 use App\Http\Requests\Admin\UserEditComplateRequest;
 use App\Admin;
 use Carbon\Carbon;
 
-class UserController extends Controller
+class UserController extends AdminController
 {
     use AdminTrait;
 

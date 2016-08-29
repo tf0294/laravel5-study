@@ -22,7 +22,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Component\\": "app/component/"
+            "Component\\": "app/component/",
+            "Facade\\": "app/Facade/"
         }
     },
     "autoload-dev": {

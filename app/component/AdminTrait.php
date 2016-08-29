@@ -4,13 +4,10 @@ namespace Component;
 
 trait AdminTrait
 {
-    /**
-     * construct
-     * admin.authミドルウェアのセット
-     */
+
     public function __construct()
     {
-        $this->middleware('admin.auth');
+        \AdminFacade::setModel(self::$model);
     }
 
     /**
@@ -19,7 +16,7 @@ trait AdminTrait
      public function index()
      {
          try {
-             $data = self::callStaticFunc('paginate', [2]);
+             $data = \AdminFacade::callStaticFunc('paginate', [2]);
              return view(sprintf('admin.%s.index', self::$view), compact('data'));
          } catch (Exception $e) {
              throw new Exception($e->getMessage());
@@ -44,7 +41,7 @@ trait AdminTrait
        {
            try {
                // WhereRaw実行
-               $models = self::callStaticFunc('whereRaw',['id = :id', [':id' => $id]]);
+               $models = \AdminFacade::callStaticFunc('whereRaw',['id = :id', [':id' => $id]]);
                // $models->first()実行
                if (! $data = call_user_func([$models, 'first'])) {
                    throw new Exception(sprintf('%s data Getting Failed.', self::$model));
@@ -64,7 +61,7 @@ trait AdminTrait
         {
             try {
                 // WhereRaw実行
-                $models = self::callStaticFunc('whereRaw',['id = :id', [':id' => $id]]);
+                $models = \AdminFacade::callStaticFunc('whereRaw',['id = :id', [':id' => $id]]);
 
                 // $models->delete()実行
                 if(! $data = call_user_func([$models, 'delete'])) {
@@ -78,17 +75,4 @@ trait AdminTrait
             }
         }
 
-        /**
-         * callStaticFunc
-         *
-         * @param string $method
-         * @param array $where
-         */
-         private static function callStaticFunc($method, $where)
-         {
-            return forward_static_call_array(
-                        ['App\\' . self::$model, $method],
-                        $where
-                    );
-         }
 }
